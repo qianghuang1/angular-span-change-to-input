@@ -9,5 +9,5 @@ Example:
 ```
 <span ng-bind="example" span-change="" varmodel="example"></span>
 ```
-```example``` is varibale in controller;
+```example``` is a variable in controller;
 
