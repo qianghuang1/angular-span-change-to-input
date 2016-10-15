@@ -7,7 +7,7 @@ then if onblur has been triggered, it turns back to ```<span>```
 
 Example:
 ```
-<span ng-bind="example" span-change="" varmodel="example"></span>
+<div span-input-change warning-string="wstring" no-empty="true"  show-input="show_input" varmodel="user_brief.nickname" jf-blur="modifyNickname"></div>
 ```
-```example``` is a variable in controller;
+is a variable in controller;
 
