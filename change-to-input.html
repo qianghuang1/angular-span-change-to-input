@@ -1,1 +1,2 @@
-<input type="text" ng-model="{{ngmodelname}}">
+<input ng-show="show_input" class='form-control varclass' ng-blur='blurCallback()' type='text' ng-model='varngmodel'>
+<span  ng-hide="show_input" style="cursor: pointer" ng-bind='varngmodel' ng-click="show_input=true" uib-popover="点击修改" popover-trigger="mouseenter"> </span>

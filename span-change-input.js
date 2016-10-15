@@ -1,46 +1,31 @@
-/*
-* author: Qiang Huang
-*/
-(function(angular) {
-  'use strict';
-  angular.module('ngSpanInput', [])
-  .directive('spanChange', function($compile) {
-
-            function link(scope, element, attrs) {
-
-                element.one('click', function() {
-                    element.after($compile("<input class='form-group modify-input' type='text' input-change='varngmodel' varmodel='varngmodel'  ng-model='varngmodel'>")(scope));
-                    element.remove()
-                })
-            }
-
-            return {
-                transclude: true,
-                scope: {
-                    varngmodel: '=varmodel'
-                },
-                link: link
-            };
-        })
-
-        .directive('inputChange', function($compile) {
-
-                function link(scope, element, attrs) {
-
-                    element.on('blur', function() {
-                        element.after($compile("<span class='introduction text-warning' span-change='format' ng-bind='varngmodel'>vas</span>")(scope));
-                        element.remove()
+app.directive('spanInputChange', function($compile) {
+        function link(scope, element, attrs) {
+        }
+        return {
+            templateUrl:'span_input_change.html',
+            transclude: true,
+            scope: {
+                varngmodel: '=varmodel',
+                afterngblur:'=jfBlur',
+                show_input:'=showInput',
+                no_empty:'=noEmpty',
+                wstring:'=warningString'
+            },
+            controller:function($scope,$element,$attrs){
+                $scope.blurCallback=function(){
+                    if($scope.no_empty&&($scope.varngmodel==null||$scope.varngmodel.length<1)){
+                        $scope.wstring='此项不能为空';
+                        return;
+                    }
+                    $scope.show_input=false;
+                    if($scope.varngmodel==null||$scope.varngmodel.length<1){
+                        $scope.varngmodel='添加';
+                    }
+                    $scope.afterngblur(function(show_input){
+                        $scope.show_input=show_input;
                     });
                 }
-
-                return {
-                    transclude: true,
-                    scope: {
-                        varngmodel: '=varmodel'
-                    },
-                    link: link
-                };
-            });
-  
-})(window.angular);
-
+            },
+            link: link
+        };
+    });
